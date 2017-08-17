@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:paddingTop="@dimen/padding_xlarge"
+    android:paddingRight="@dimen/padding_xlarge"
+    android:paddingLeft="@dimen/padding_xlarge">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginBottom="@dimen/padding_normal"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/gainsboro"/>
+
+        <EditText android:id="@+id/ed_otp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_otp"
+            style="@style/edittext_signup"
+            android:drawablePadding="@dimen/padding_large"
+            android:background="@color/white"
+            android:inputType="text"
+            android:paddingLeft="@dimen/padding_large"/>
+
+        <Button android:id="@+id/bt_signin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightgray"
+            android:text="@string/sign_in"
+            android:drawablePadding="@dimen/padding_large"
+            android:layout_marginTop="@dimen/padding_large"
+            android:gravity="center"
+            android:textColor="@color/gray"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/resend_otp"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/padding_small"
+            android:gravity="end"/>
+
+    </LinearLayout>
+
+
+    <TextView android:id="@+id/tv_skip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/skip"
+        android:layout_alignParentBottom="true"
+        android:gravity="end"
+        android:textColor="@color/white"
+        android:paddingBottom="@dimen/padding_xlarge"/>
+
+
+</RelativeLayout>

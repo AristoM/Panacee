@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_1"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/all_ceramic_restorations" />
+        <item
+            android:id="@+id/nav_2"
+            android:icon="@drawable/lock"
+            android:title="@string/hybrid_ceramic_restorations" />
+        <item
+            android:id="@+id/nav_3"
+            android:icon="@drawable/mobile_phone"
+            android:title="@string/hybrid_ceramic_restorations" />
+
+        <item
+            android:id="@+id/nav_4"
+            android:icon="@drawable/ic_notifications_black_24dp"
+            android:title="@string/all_ceramic_restorations" />
+
+        <item
+            android:id="@+id/nav_5"
+            android:icon="@drawable/sign_in"
+            android:title="@string/zirconia_implant_restoration" />
+    </group>
+
+    <item android:title="Other">
+        <menu>
+            <item
+                android:id="@+id/nav_about_us"
+                android:title="@string/about_us" />
+            <item
+                android:id="@+id/nav_privacy_policy"
+                android:title="@string/privacy_policy" />
+        </menu>
+    </item>
+
+</menu>
