@@ -47,10 +47,36 @@
     <string name="about_us">About Us</string>
     <string name="privacy_policy">Privacy policy</string>
     <string name="categories">Categories</string>
-
+    <string name="guest_user">Guest</string>
+    <string name="my_profile">My Profile</string>
 
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
 
     <string name="string_commit_test">Commit test</string>
+
+
+    <string name="work_order_form">WORK ORDER FORM</string>
+    // Page #1
+    <string name="order_date">Order Date :</string>
+    <string name="work_req_on">Work Required on :</string>
+    <string name="order_no">ORDER No. :</string>
+
+    <string name="dr">Dr.</string>
+    <string name="clinic_name">Clinic Name</string>
+    <string name="place">Place</string>
+    <string name="ph">Ph :</string>
+    <string name="patient_name">Patient Name</string>
+    <string name="age_sex">Age / Sex</string>
+
+    <string name="new_case">New Case</string>
+    <string name="continuation_of_case">Continuation of Case(Old Case Ref.</string>
+    <string name="remake_or_redo">Remake or Redo,(Old case Ref.</string>
+
+    <string name="stump_shade">Stump Shade</string>
+    <string name="final_shade">Final Shade</string>
+    <string name="incisal_translucency">Incisal Translucency</string>
+    <string name="result">result</string>
+
+
 </resources>

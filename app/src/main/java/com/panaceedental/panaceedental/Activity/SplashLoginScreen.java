@@ -11,11 +11,20 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.panaceedental.panaceedental.Parcers.CommonParcer;
 import com.panaceedental.panaceedental.R;
+import com.panaceedental.panaceedental.Utility.APIClass;
+import com.panaceedental.panaceedental.Utility.Const;
 import com.panaceedental.panaceedental.Utility.MyResultReceiver;
+import com.panaceedental.panaceedental.Utility.RequestType;
 import com.panaceedental.panaceedental.Utility.Utility;
 import com.panaceedental.panaceedental.Utility.Validate;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by aristomichael on 12/08/17.
@@ -106,6 +115,15 @@ public class SplashLoginScreen extends Activity implements View.OnClickListener,
                 overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
                 finish();
 
+//                Map<String, String> param = new HashMap<>();
+//                param.put(Const.ACTION, Const.LOGIN_ACTION);
+//                param.put(Const.EMAIL, sMobile);
+//                param.put(Const.PASSWORD, sPassword );
+//
+//                APIClass apiClass = new APIClass(this, param, myResultReceiver, RequestType.LOGIN_REQUEST);
+//                apiClass.makeJsonRequest();
+
+
             } else {
 
                 edPassword.requestFocus();
@@ -121,9 +139,25 @@ public class SplashLoginScreen extends Activity implements View.OnClickListener,
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
 
-        switch (resultCode) {
+        if(resultData != null) {
+
+            Gson gson = new Gson();
+            CommonParcer commonParcer = gson.fromJson(resultData.getString("result"), CommonParcer.class);
 
 
+            switch (resultCode) {
+
+                case RequestType.LOGIN_REQUEST:
+
+                    String error = commonParcer.getError();
+                    Toast.makeText(loginScreen, error, Toast.LENGTH_SHORT).show();
+
+                    break;
+
+
+            }
+        } else {
+            Toast.makeText(loginScreen, "error", Toast.LENGTH_SHORT).show();
         }
 
     }

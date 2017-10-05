@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <!--<group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_1"
             android:icon="@drawable/ic_home_black_24dp"
@@ -24,17 +24,21 @@
             android:id="@+id/nav_5"
             android:icon="@drawable/sign_in"
             android:title="@string/zirconia_implant_restoration" />
-    </group>
+    </group>-->
 
-    <item android:title="Other">
-        <menu>
+    <!--<item android:title="Other">
+        <menu>-->
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/menu_profile"
+            android:title="@string/my_profile"/>
             <item
                 android:id="@+id/nav_about_us"
                 android:title="@string/about_us" />
             <item
                 android:id="@+id/nav_privacy_policy"
                 android:title="@string/privacy_policy" />
-        </menu>
-    </item>
+    </group>
+        <!--</menu>
+    </item>-->
 
 </menu>
