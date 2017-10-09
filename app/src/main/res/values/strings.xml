@@ -49,6 +49,7 @@
     <string name="categories">Categories</string>
     <string name="guest_user">Guest</string>
     <string name="my_profile">My Profile</string>
+    <string name="home">Home</string>
 
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
@@ -77,6 +78,12 @@
     <string name="final_shade">Final Shade</string>
     <string name="incisal_translucency">Incisal Translucency</string>
     <string name="result">result</string>
+    <string name="openDrawer">openDrawer</string>
+    <string name="closeDrawer">closeDrawer</string>
 
+    <string-array name="nav_item_activity_titles">
+        <item>Home</item>
+        <item>Profile</item>
+    </string-array>
 
 </resources>

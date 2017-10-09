@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.panaceedental.panaceedental.Utility.APIClass;
 import com.panaceedental.panaceedental.Utility.Const;
 import com.panaceedental.panaceedental.Utility.MyResultReceiver;
 import com.panaceedental.panaceedental.Utility.RequestType;
+import com.panaceedental.panaceedental.Utility.SharedPref;
 import com.panaceedental.panaceedental.Utility.Utility;
 import com.panaceedental.panaceedental.Utility.Validate;
 
@@ -32,10 +34,10 @@ import java.util.Map;
 
 public class SplashLoginScreen extends Activity implements View.OnClickListener, MyResultReceiver.Receiver{
 
-    LinearLayout  llSignup;
+    LinearLayout  llSignup, llSignin;
     EditText edMobile, edPassword;
     Button btSignin;
-
+    ImageView ivLogo;
     MyResultReceiver myResultReceiver;
 
     public static Activity loginScreen;
@@ -53,6 +55,8 @@ public class SplashLoginScreen extends Activity implements View.OnClickListener,
         edMobile = findViewById(R.id.ed_mobile);
         edPassword = findViewById(R.id.ed_password);
         btSignin = findViewById(R.id.bt_signin);
+        ivLogo = findViewById(R.id.iv_logo);
+        llSignin = findViewById(R.id.ll_signin);
 
         llSignup.setOnClickListener(this);
         btSignin.setOnClickListener(this);
@@ -64,16 +68,29 @@ public class SplashLoginScreen extends Activity implements View.OnClickListener,
 
         myResultReceiver.setReceiver(this);
 
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                Intent homescreen = new Intent(SplashLoginScreen.this, HomeActivity.class);
-//                startActivity(homescreen);
-//                finish();
-//
-//            }
-//        }, 1000);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                String username = SharedPref.getUserName(SplashLoginScreen.this);
+                String password = SharedPref.getPassword(SplashLoginScreen.this);
+
+                if(Validate.isValidString(username)) {
+
+                    Intent homescreen = new Intent(SplashLoginScreen.this, HomeActivity.class);
+                    startActivity(homescreen);
+                    overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+                    finish();
+                } else {
+                    llSignin.setVisibility(View.VISIBLE);
+                    llSignup.setVisibility(View.VISIBLE);
+                    ivLogo.setVisibility(View.GONE);
+                }
+
+//                signinSuccess(username, password);
+
+            }
+        }, 3000);
 
 
     }
@@ -85,7 +102,10 @@ public class SplashLoginScreen extends Activity implements View.OnClickListener,
 
             case R.id.bt_signin:
 
-                signinSuccess();
+                String sMobile = edMobile.getText().toString();
+                String sPassword = edPassword.getText().toString();
+
+                signinSuccess(sMobile, sPassword);
 
                 break;
             case R.id.ll_signup:
@@ -99,16 +119,15 @@ public class SplashLoginScreen extends Activity implements View.OnClickListener,
         }
     }
 
-    void signinSuccess() {
+    void signinSuccess(String sMobile, String sPassword) {
 
         Utility.hideKeyboard(this);
-
-        String sMobile = edMobile.getText().toString();
-        String sPassword = edPassword.getText().toString();
 
 
         if(Validate.isValidString(sMobile)) {
             if(Validate.isValidString(sPassword)) {
+
+                SharedPref.saveLoginDetails(SplashLoginScreen.this, sMobile, sPassword);
 
                 Intent homescreen = new Intent(SplashLoginScreen.this, HomeActivity.class);
                 startActivity(homescreen);

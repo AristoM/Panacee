@@ -35,6 +35,12 @@
         <activity android:name=".Activity.VerifyMobile"
             android:theme="@style/ActivityTheme"/>
 
+        <activity android:name=".Activity.AboutUsActivity"
+            android:theme="@style/ActivityTheme"/>
+
+        <activity android:name=".Activity.PrivacyPolicyActivity"
+            android:theme="@style/ActivityTheme"/>
+
     </application>
 
 </manifest>

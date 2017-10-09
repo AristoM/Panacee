@@ -22,4 +22,7 @@ public class Const {
     public static final int MY_SOCKET_TIMEOUT_MS = 10000;
     public static final int DEFAULT_MAX_RETRIES = 3;
 
+    public static String SP_USERNAME = "sp_username";
+    public static String SP_PASSWORD = "sp_password";
+
 }
