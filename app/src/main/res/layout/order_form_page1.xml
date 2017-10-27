@@ -4,9 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ScrollView android:layout_above="@+id/rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
 <LinearLayout
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:padding="@dimen/padding_small">
 
 <TextView
@@ -70,7 +75,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ORDER No. :"/>
+                android:text="ORDER No. :"
+                />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -108,14 +114,17 @@
 
                 <EditText android:layout_weight=".7"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/square"
+                    android:paddingLeft="@dimen/padding_xsmall"/>
 
             </LinearLayout>
 
             <LinearLayout android:weightSum="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/padding_xsmall">
 
                 <TextView android:layout_weight=".3"
                     android:layout_width="0dp"
@@ -124,7 +133,9 @@
 
                 <EditText android:layout_weight=".7"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/square"
+                    android:paddingLeft="@dimen/padding_xsmall"/>
 
             </LinearLayout>
 
@@ -141,7 +152,9 @@
 
                 <EditText android:layout_weight=".7"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/square"
+                    android:layout_marginTop="@dimen/padding_xsmall"/>
 
             </LinearLayout>
 
@@ -157,7 +170,9 @@
 
                 <EditText android:layout_weight=".7"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/square"
+                    android:layout_marginTop="@dimen/padding_xsmall"/>
 
             </LinearLayout>
 
@@ -192,7 +207,9 @@
 
                 <EditText android:layout_weight=".7"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/square"
+                    android:layout_marginTop="@dimen/padding_xsmall"/>
 
             </LinearLayout>
 
@@ -208,7 +225,9 @@
 
                 <EditText android:layout_weight=".7"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/square"
+                    android:layout_marginTop="@dimen/padding_xsmall"/>
 
             </LinearLayout>
 
@@ -218,21 +237,112 @@
 
     </android.support.v7.widget.CardView>
 
-</LinearLayout>
-
-    <RelativeLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_marginTop="@dimen/padding_small">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_normal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <CheckBox android:layout_weight=".1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_case"
+                    android:layout_weight=".9"/>
+
+            </LinearLayout>
+
+            <LinearLayout android:weightSum="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox android:layout_weight=".1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView android:layout_weight=".7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/continuation_of_case"/>
+
+                <EditText android:layout_weight=".2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/square"
+                    android:layout_marginTop="@dimen/padding_xsmall"/>
+
+            </LinearLayout>
+
+            <LinearLayout android:weightSum="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox android:layout_weight=".1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView android:layout_weight=".7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/remake_or_redo"/>
+
+                <EditText android:layout_weight=".2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/square"
+                    android:layout_marginTop="@dimen/padding_xsmall"/>
+
+            </LinearLayout>
+
+            <include layout="@layout/order_form_page2"/>
+
+            <include layout="@layout/order_form_page3"/>
+
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>
+
+
+
+
+    </ScrollView>
+
+    <RelativeLayout android:id="@+id/rl_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary">
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="Next >>"
+            android:text="Submit"
+            android:textColor="@color/white"
+            android:background="@color/transparent"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.panaceedental.panaceedental.OrderForm.OrderFormActivity;
 import com.panaceedental.panaceedental.R;
 
 public class HomeActivity extends AppCompatActivity {
@@ -89,7 +90,12 @@ public class HomeActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(HomeActivity.this , "fab clicked", Toast.LENGTH_SHORT).show();
+
+                Intent orderform = new Intent(HomeActivity.this, OrderFormActivity.class);
+                startActivity(orderform);
+                overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+                finish();
+
             }
         });
 

@@ -77,6 +77,39 @@
     <string name="stump_shade">Stump Shade</string>
     <string name="final_shade">Final Shade</string>
     <string name="incisal_translucency">Incisal Translucency</string>
+
+    <string name="type_of_work">Type of Work</string>
+    <string name="inlayonlay">Inlay / Onlay</string>
+    <string name="fpd">FPD</string>
+    <string name="crown">Crown</string>
+    <string name="marlylad">MarlyLand</string>
+    <string name="veneer">Veneer</string>
+    <string name="cantmever">Cantmever</string>
+
+    <string name="material">Material</string>
+    <string name="all_ceramic">All Ceramic</string>
+    <string name="hybrid_ceramic">Hybrid Ceramic</string>
+    <string name="monolith_zirconia">Monolith Zirconia</string>
+    <string name="pmma">PMMA</string>
+
+    <string name="screw_retained">Screw Retained</string>
+    <string name="cemented">Cemented</string>
+
+    <string name="checklist">Check List</string>
+    <string name="max_model_impression">Max Model / Impression</string>
+    <string name="mand_model_impression">Mand Model / Impression</string>
+    <string name="implant_driver">Implant Driver</string>
+    <string name="lab_analog">Lab Analog</string>
+    <string name="lab_screw">Lab Screw</string>
+    <string name="others">Others</string>
+
+    <string name="pontic_design">Pontic Design</string>
+    <string name="modified_ridge_lap">Modified Ridge Lap</string>
+    <string name="ridge_lap">Ridge Lap</string>
+    <string name="sanitary">Sanitary</string>
+    <string name="ovate">Ovate</string>
+    <string name="special_instruction">Special Instructions</string>
+
     <string name="result">result</string>
     <string name="openDrawer">openDrawer</string>
     <string name="closeDrawer">closeDrawer</string>

@@ -41,6 +41,9 @@
         <activity android:name=".Activity.PrivacyPolicyActivity"
             android:theme="@style/ActivityTheme"/>
 
+        <activity android:name=".OrderForm.OrderFormActivity"
+            android:theme="@style/ActivityTheme"/>
+
     </application>
 
 </manifest>
