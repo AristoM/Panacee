@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,6 +42,8 @@ public class HomeActivity extends AppCompatActivity {
     private String[] activityTitles;
 
     private Handler mHandler;
+
+    RecyclerView recyclerView;
 
 //    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
 //            = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -76,6 +79,7 @@ public class HomeActivity extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         fab = (FloatingActionButton) findViewById(R.id.fab);
+        recyclerView = (RecyclerView) findViewById(R.id.rv_productlist);
 
 
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
@@ -94,7 +98,6 @@ public class HomeActivity extends AppCompatActivity {
                 Intent orderform = new Intent(HomeActivity.this, OrderFormActivity.class);
                 startActivity(orderform);
                 overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
-                finish();
 
             }
         });
@@ -279,6 +282,27 @@ public class HomeActivity extends AppCompatActivity {
 
     private void selectNavMenu() {
         navigationView.getMenu().getItem(navItemIndex).setChecked(true);
+    }
+
+    private boolean _doubleBackToExitPressedOnce    = false;
+
+    @Override
+    public void onBackPressed() {
+
+        System.out.println("onBackPressed--");
+        if (_doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+        this._doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Press again to quit", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                _doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 
 }

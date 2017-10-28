@@ -3,14 +3,83 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <LinearLayout android:id="@+id/ll_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="profile layut"/>
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="@dimen/padding_large"
+        android:paddingRight="@dimen/padding_large"
+        android:paddingLeft="@dimen/padding_large">
 
-    <Button android:id="@+id/bt_logout"
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/user"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/padding_small">
+
+            <TextView android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aristo"/>
+
+            <TextView android:id="@+id/tv_email"
+                android:layout_marginTop="@dimen/padding_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="aristo@gmail.com"/>
+
+            <TextView android:id="@+id/tv_mobile"
+                android:layout_marginTop="@dimen/padding_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1234567890"/>
+
+            <TextView android:id="@+id/tv_edit"
+                android:layout_marginTop="@dimen/padding_small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textColor="@color/colorPrimary"
+                android:paddingRight="@dimen/padding_small"
+                android:text="Edit"/>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView android:id="@+id/tv_myorders"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:text="@string/my_profile"
+        android:layout_below="@+id/ll_profile"
+        android:gravity="center"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_myorders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_myorders"
+        android:layout_above="@+id/bt_logout">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <TextView android:id="@+id/bt_logout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/transparent"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/padding_normal"
         android:text="Logout"/>
 
 </RelativeLayout>

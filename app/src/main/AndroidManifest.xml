@@ -30,7 +30,7 @@
             android:theme="@style/ActivityTheme"/>
 
         <activity android:name=".Activity.SignupScreen"
-            android:theme="@style/ActivityTheme"/>
+            android:theme="@style/ActivityThemeNormal"/>
 
         <activity android:name=".Activity.VerifyMobile"
             android:theme="@style/ActivityTheme"/>
@@ -42,7 +42,7 @@
             android:theme="@style/ActivityTheme"/>
 
         <activity android:name=".OrderForm.OrderFormActivity"
-            android:theme="@style/ActivityTheme"/>
+            android:theme="@style/ActivityThemeNormal"/>
 
     </application>
 

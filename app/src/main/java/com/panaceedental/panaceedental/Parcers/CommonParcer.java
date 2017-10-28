@@ -8,16 +8,8 @@ import java.io.Serializable;
 
 public class CommonParcer implements Serializable {
 
-    String error;
-    String message;
-
-    public String getError() {
-        return error;
-    }
-
-    public void setError(String error) {
-        this.error = error;
-    }
+    private String status;
+    private String message;
 
     public String getMessage() {
         return message;
@@ -25,5 +17,13 @@ public class CommonParcer implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

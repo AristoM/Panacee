@@ -2,6 +2,7 @@ package com.panaceedental.panaceedental.Utility;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -30,72 +31,41 @@ public class APIClass {
     MyResultReceiver myResultReceiver;
     int reqType;
     Context mContext;
+    String sUrl;
 
     // Tag used to cancel the request
     String tag_json_obj = "json_obj_req";
 
-    public APIClass(Context mContext, Map<String, String> params, MyResultReceiver myResultReceiver, int reqType) {
+    public APIClass(Context mContext, Map<String, String> params, MyResultReceiver myResultReceiver, int reqType, String url) {
         this.params = params;
         this.myResultReceiver = myResultReceiver;
         this.reqType = reqType;
         this.mContext = mContext;
+        this.sUrl = url;
     }
 
 
     public void makeJsonRequest() {
 
-//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-//                (Const.mainURL, new JSONObject(params), new Response.Listener<JSONObject>() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//
-//                        String result = "";
-//                        try {
-//                            result = response.getString("error");
-//                        }catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                        Bundle bundle = new Bundle();
-//                        bundle.putString(mContext.getString(R.string.result), result);
-//                        myResultReceiver.send(reqType, bundle);
-//
-//                    }
-//                }, new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//
-//                    }
-//                });
-//
-//        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
-//                Const.MY_SOCKET_TIMEOUT_MS,
-//                Const.DEFAULT_MAX_RETRIES,
-//                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-//
-//        if (AppController.getInstance() != null) {
-//            AppController.getInstance().addToRequestQueue(jsonObjectRequest, tag_json_obj);
-//        }
-
-
+        Log.e("@@@ req", new JSONObject(params).toString());
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                Const.mainURL, new JSONObject(params),
+                sUrl, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
 
                         try {
-
+                            Log.e("@@@ res", response.toString());
                             Bundle bundle = new Bundle();
-                            bundle.putString("Response", response.toString());
+                            bundle.putString(Const.RESPONSE, response.toString());
                             myResultReceiver.send(reqType, bundle);
 
                         } catch (OutOfMemoryError e) {
-                            myResultReceiver.send(0, null);
+                            myResultReceiver.send(reqType, null);
                         } catch (Exception e) {
-                            myResultReceiver.send(0, null);
+                            myResultReceiver.send(reqType, null);
                         }
 
                     }

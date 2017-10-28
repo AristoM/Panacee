@@ -42,12 +42,12 @@
             <EditText android:id="@+id/ed_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/mobile_no"
+                android:hint="@string/mobile_or_email"
                 android:drawableLeft="@drawable/mobile_phone"
                 android:drawablePadding="@dimen/padding_large"
                 style="@style/edittext_signup"
                 android:background="@color/white"
-                android:inputType="phone"/>
+                android:inputType="text"/>
 
 <!--</LinearLayout>-->
 

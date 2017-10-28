@@ -7,6 +7,7 @@ package com.panaceedental.panaceedental.Utility;
 public class RequestType {
 
     final public static int LOGIN_REQUEST = 1;
-    public static int SIGNUP_REQUEST = 2;
+    final public static int SIGNUP_REQUEST = 2;
+    final public static int PRODUCTSLIST_REQUEST = 3;
 
 }

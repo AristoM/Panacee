@@ -12,17 +12,23 @@ public class Const {
 
 
     public static String mainURL = "https://panaceedental.com/api/users/";
+    public static String mainProductsListURL = "https://panaceedental.com/api/products/";
 
     public static String ACTION = "action";
     public static String LOGIN_ACTION = "login";
+    public static String SIGNUP_ACTION = "register";
+    public static String PRODUCTS_ACTION = "products";
     public static String EMAIL = "email";
     public static String MOBILE = "mobile";
     public static String PASSWORD = "password";
+        public static String NAME = "name";
 
     public static final int MY_SOCKET_TIMEOUT_MS = 10000;
     public static final int DEFAULT_MAX_RETRIES = 3;
 
     public static String SP_USERNAME = "sp_username";
     public static String SP_PASSWORD = "sp_password";
+
+    public static String RESPONSE = "response";
 
 }

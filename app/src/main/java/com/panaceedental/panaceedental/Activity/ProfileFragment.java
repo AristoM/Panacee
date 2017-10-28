@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.panaceedental.panaceedental.R;
 import com.panaceedental.panaceedental.Utility.SharedPref;
@@ -19,7 +20,7 @@ import com.panaceedental.panaceedental.Utility.SharedPref;
 public class ProfileFragment extends Fragment{
 
     View view;
-    Button bt_logout;
+    TextView bt_logout;
 
     @Nullable
     @Override

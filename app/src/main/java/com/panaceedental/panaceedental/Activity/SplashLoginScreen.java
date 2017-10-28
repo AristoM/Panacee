@@ -1,6 +1,7 @@
 package com.panaceedental.panaceedental.Activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,13 +33,14 @@ import java.util.Map;
  * Created by aristomichael on 12/08/17.
  */
 
-public class SplashLoginScreen extends Activity implements View.OnClickListener, MyResultReceiver.Receiver{
+public class SplashLoginScreen extends Activity implements View.OnClickListener, MyResultReceiver.Receiver {
 
     LinearLayout  llSignup, llSignin;
     EditText edMobile, edPassword;
     Button btSignin;
     ImageView ivLogo;
     MyResultReceiver myResultReceiver;
+    ProgressDialog progress;
 
     public static Activity loginScreen;
 
@@ -65,7 +67,6 @@ public class SplashLoginScreen extends Activity implements View.OnClickListener,
 
 
         myResultReceiver = new MyResultReceiver(new Handler());
-
         myResultReceiver.setReceiver(this);
 
         new Handler().postDelayed(new Runnable() {
@@ -77,10 +78,12 @@ public class SplashLoginScreen extends Activity implements View.OnClickListener,
 
                 if(Validate.isValidString(username)) {
 
-                    Intent homescreen = new Intent(SplashLoginScreen.this, HomeActivity.class);
-                    startActivity(homescreen);
-                    overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
-                    finish();
+                    formLoginData(username, password);
+
+//                    Intent homescreen = new Intent(SplashLoginScreen.this, HomeActivity.class);
+//                    startActivity(homescreen);
+//                    overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+//                    finish();
                 } else {
                     llSignin.setVisibility(View.VISIBLE);
                     llSignup.setVisibility(View.VISIBLE);
@@ -105,7 +108,7 @@ public class SplashLoginScreen extends Activity implements View.OnClickListener,
                 String sMobile = edMobile.getText().toString();
                 String sPassword = edPassword.getText().toString();
 
-                signinSuccess(sMobile, sPassword);
+                signinProcess(sMobile, sPassword);
 
                 break;
             case R.id.ll_signup:
@@ -119,7 +122,7 @@ public class SplashLoginScreen extends Activity implements View.OnClickListener,
         }
     }
 
-    void signinSuccess(String sMobile, String sPassword) {
+    void signinProcess(String sMobile, String sPassword) {
 
         Utility.hideKeyboard(this);
 
@@ -127,21 +130,17 @@ public class SplashLoginScreen extends Activity implements View.OnClickListener,
         if(Validate.isValidString(sMobile)) {
             if(Validate.isValidString(sPassword)) {
 
+                // Save login details in shared pref
                 SharedPref.saveLoginDetails(SplashLoginScreen.this, sMobile, sPassword);
 
-                Intent homescreen = new Intent(SplashLoginScreen.this, HomeActivity.class);
-                startActivity(homescreen);
-                overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
-                finish();
+//                Intent homescreen = new Intent(SplashLoginScreen.this, HomeActivity.class);
+//                startActivity(homescreen);
+//                overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+//                finish();
 
-//                Map<String, String> param = new HashMap<>();
-//                param.put(Const.ACTION, Const.LOGIN_ACTION);
-//                param.put(Const.EMAIL, sMobile);
-//                param.put(Const.PASSWORD, sPassword );
-//
-//                APIClass apiClass = new APIClass(this, param, myResultReceiver, RequestType.LOGIN_REQUEST);
-//                apiClass.makeJsonRequest();
+                formLoginData(sMobile, sPassword);
 
+                startDialog();
 
             } else {
 
@@ -161,22 +160,36 @@ public class SplashLoginScreen extends Activity implements View.OnClickListener,
         if(resultData != null) {
 
             Gson gson = new Gson();
-            CommonParcer commonParcer = gson.fromJson(resultData.getString("result"), CommonParcer.class);
+            CommonParcer commonParcer = gson.fromJson(resultData.getString(Const.RESPONSE), CommonParcer.class);
 
 
             switch (resultCode) {
 
                 case RequestType.LOGIN_REQUEST:
 
-                    String error = commonParcer.getError();
-                    Toast.makeText(loginScreen, error, Toast.LENGTH_SHORT).show();
+                    String status = commonParcer.getStatus();
+                    String message = commonParcer.getMessage();
+                    if(!status.isEmpty() && status.equals(getString(R.string.success))) {
 
+                        Intent homescreen = new Intent(SplashLoginScreen.this, HomeActivity.class);
+                        startActivity(homescreen);
+                        overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+                        finish();
+
+                    } else {
+                        SharedPref.saveLoginDetails(SplashLoginScreen.this, "", "");
+                    }
+
+                    Toast.makeText(loginScreen, message, Toast.LENGTH_SHORT).show();
+                    hideDialog();
                     break;
 
 
             }
         } else {
-            Toast.makeText(loginScreen, "error", Toast.LENGTH_SHORT).show();
+//            SharedPref.saveLoginDetails(SplashLoginScreen.this, "", "");
+            Toast.makeText(loginScreen, getString(R.string.try_again_later), Toast.LENGTH_SHORT).show();
+            hideDialog();
         }
 
     }
@@ -184,4 +197,33 @@ public class SplashLoginScreen extends Activity implements View.OnClickListener,
     public void finishActivity(){
         SplashLoginScreen.this.finish();
     }
+
+    private void startDialog() {
+        progress=new ProgressDialog(this);
+        progress.setMessage("Loading...");
+//        progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+//        progress.setIndeterminate(true);
+//        progress.setProgress(0);
+        progress.show();
+
+    }
+
+    private void hideDialog() {
+        if(progress != null) {
+            progress.cancel();
+        }
+    }
+
+    private void formLoginData(String sMobile, String sPassword) {
+
+        Map<String, String> param = new HashMap<>();
+        param.put(Const.ACTION, Const.LOGIN_ACTION);
+        param.put(Const.EMAIL, sMobile);
+        param.put(Const.PASSWORD, sPassword );
+
+        APIClass apiClass = new APIClass(this, param, myResultReceiver, RequestType.LOGIN_REQUEST, Const.mainURL);
+        apiClass.makeJsonRequest();
+
+    }
+
 }
